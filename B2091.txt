@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int a[1000], b[1000];//数组定义放在main函数外面，作为全局变量
+int main(void) {
+    int n,sum=0;
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+    for (int i = 0; i < n; i++)
+        scanf("%d", &b[i]);
+    for (int i = 0; i < n; i++)
+        sum += a[i] * b[i];
+    printf("%d", sum);
+}

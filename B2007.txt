@@ -1,0 +1,15 @@
+#include<stdio.h>
+
+int main(void){
+    int a,b;
+    scanf("%d %d",&a,&b);
+    printf("%d",a+b);
+}
+
+
+Python
+
+a,b=input().split()
+a=int(a)
+b=int(b)
+print(a+b)

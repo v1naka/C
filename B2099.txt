@@ -1,0 +1,24 @@
+二维数组存储矩阵
+#include <stdio.h>
+
+int a[5][5];
+
+int main()
+{
+    for (int i = 0; i < 5; i++)
+        for (int j = 0; j < 5; j++)
+            scanf("%d", &a[i][j]);
+    int m, n,k;
+    scanf("%d%d", &m, &n);
+    for (int i = 0; i < 5; i++) {
+        //用k表示要输出哪一行
+        if (i == m-1) k = n-1;
+        else if (i == n-1) k = m-1;
+        else k = i;
+
+        for (int j = 0; j < 5; j++)
+            printf("%d ", a[k][j]);
+        putchar(10);
+    }
+    return 0;
+}

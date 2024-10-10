@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main(void){
+    int a,b;
+    scanf("%d%d",&a,&b);
+    printf("%.9lf",1.0*a/b);
+}
+
+Python
+
+a,b=input().split()
+a=float(a)
+b=float(b)
+print("{:.9f}".format(a/b))

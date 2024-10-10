@@ -1,0 +1,33 @@
+思路1：数组模拟
+补充函数memset，在头文件<string.h>里面，作用是给数组赋值，用法memset(数组名，值，赋值多少个元素(用sizeof(数组名就可以了)，表示数组的大小))
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+bool light[5005];
+
+int main(void) {
+    int n,x;
+    scanf("%d", &n);
+    memset(light, true, sizeof(light));
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; (x = j * i) <= n; j++)
+            light[x] = !light[x];//理解下这一步
+    for (int i = 1; i <= n; i++)
+        if(light[i]==false)
+            printf("%d ", i);
+}
+
+思路2：数学方法分析：
+我们随意选取一个数n（代表n号灯），看看它的开关状态转换了几次（偶数次最后开，奇数次最后关）
+第k个人会对n号灯进行开关，那么k一定是n的因子，下面我们只需要考虑n的因子的个数
+因子一定是成对出现的，k与n/k，只有当k=n/k时才是单个，此时n为完全平方数
+所以当n为完全平方数的时候，有奇数个因子，状态变换奇数次，最后为关；否则为开
+#include <stdio.h>
+
+int main(void) {
+    int n,x;
+    scanf("%d", &n);
+    for (int i = 1; (x=i * i) <= n; i++)
+        printf("%d ", x);
+}

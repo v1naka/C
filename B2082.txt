@@ -1,0 +1,16 @@
+#include<stdio.h>
+
+int main(void) {
+	int l,r,k;
+	scanf("%d%d", &l,&r);
+	int cnt = 0;
+	for (int i = l; i <= r; i++) {
+		k = i;//思考一下这里我为什么要用另一个变量k，而不直接用i
+		while (k != 0) {
+			cnt += k % 10 == 2;//如果k%10==1，就+1，否则+0，bool型变量和int型也是可以相加的，这种简单判断可以这么写，比较简单
+			k /= 10;
+		}
+	}
+	printf("%d", cnt);
+	return 0;
+}

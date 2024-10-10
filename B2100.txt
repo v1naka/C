@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main()
+{
+    int n, i, j;
+    scanf("%d%d%d", &n, &i, &j);
+    //行
+    for (int s = 1; s <= n; s++)
+        printf("(%d,%d) ", i, s);
+    putchar(10);
+    //列
+    for (int s = 1; s <= n; s++)
+        printf("(%d,%d) ", s, j);
+    putchar(10);
+    //主方向对角线，坐标差值为定值
+    int delta = j - i, y;
+    for (int s = 1; s <= n; s++) {
+        y = s + delta;
+        if (1 <= y && y <= n)//判断坐标是否合法
+            printf("(%d,%d) ", s, y);
+    }
+    putchar(10);
+    //主方向对角线，坐标之和为定值
+    int sum = i + j, x;
+    for (int s = 1; s <= n; s++) {
+        x = sum - s;
+        if (1 <= x && x <= n)//判断坐标是否合法
+            printf("(%d,%d) ", x, s);
+    }
+    return 0;
+}

@@ -1,0 +1,21 @@
+#include<stdio.h>
+
+int main(void) {
+    int n, a, b;
+    scanf_s("%d", &n);
+    double x, y,z;//z表示差值
+    scanf_s("%d%d", &a, &b);
+    x = (double)b / a;//这里也可以写1.0*b/a
+    for (int i = 1; i < n; i++) {//注意这里只循环n-1次
+        scanf_s("%d%d", &a,&b);
+        y = (double)b / a;
+        z = y-x;//这里如果在判断里写y-x>0.05 y-x<0.05程序会变慢
+        //还有注意的一点就是不能写-0.05<=z<=0.05，之前讲过了，第一个比较的结果是0或1，再与后面比较没意义
+        if (z > 0.05)
+            printf("better\n");
+        else if (z < -0.05)
+            printf("worse\n");
+        else
+            printf("same\n");
+    }
+}

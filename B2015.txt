@@ -1,0 +1,15 @@
+#include<stdio.h>
+
+int main(void) {
+    double r1,r2;
+    scanf("%lf%lf", &r1,&r2);
+    printf("%.2lf",1/(1/r1+1/r2));
+}
+
+
+Python
+
+r1,r2=input().split()
+r1=float(r1)
+r2=float(r2)
+print(f"{1/(1/r1+1/r2):.2f}")

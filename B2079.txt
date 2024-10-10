@@ -1,0 +1,14 @@
+#include<stdio.h>
+
+int main(void) {
+    int n;
+    double sum = 1,fac=1;//factorial：阶乘
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++) {
+        fac *= i;//先计算阶乘
+        sum += 1 / fac;
+    }
+    printf("%.10lf", sum);
+    return 0;
+}
+//这道题的思想就是对于这个阶乘的处理，不需要每次都重新计算，利用递推关系一边增加一边计算

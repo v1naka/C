@@ -1,0 +1,52 @@
+//思路是先得出每一行的最大值，将其存储起来，再求每一列的最小值，判断它是否是某一行的最大值(用的是桶计数法)
+//这题没有什么特别灵活的方法，就是单纯的枚举判断，可以看看最后一个题解的预处理思想
+#include <stdio.h>
+#include <stdbool.h>
+
+int a[5][5];
+bool b[5][5];
+
+int main(void)
+{
+    bool exist = false;//默认没有鞍点
+
+    for (int i = 0; i < 5; i++)
+        for (int j = 0; j < 5; j++)
+            scanf("%d", &a[i][j]);
+
+    int row_max = 1 << 31;//行最大值初始化为 int 最小值
+    int col_idx;//最大值的列索引
+
+    for (int i = 0; i < 5; i++) {
+        row_max = 1 << 31;
+        //先寻找每一行的最大值
+        for (int j = 0; j < 5; j++) {
+            if (a[i][j] > row_max) {
+                row_max = a[i][j];
+                col_idx = j;
+            }
+        }
+        //存储到桶里面
+        b[i][col_idx] = true;
+    }
+
+    int col_min = 1 << 31-1;//列最小值初始化为 int 最大值
+    int row_idx;//最大值的列索引
+    for (int j = 0; j < 5; j++) {
+        col_min = 1 << 31 - 1;
+        //再寻找每一列的最小值
+        for (int i = 0; i < 5; i++) {
+            if (a[i][j] < col_min) {
+                col_min = a[i][j];
+                row_idx = i;
+            }
+        }
+        if (b[row_idx][j] == true) {//判断这个点是不是某一行的最大值
+            printf("%d %d %d\n", row_idx + 1, j + 1, a[row_idx][j]);
+            exist = true;
+        }
+    }
+    if(exist==false)
+        printf("not found");
+    return 0;
+}

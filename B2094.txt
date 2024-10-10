@@ -1,0 +1,20 @@
+这题注意点就是最大数可能不止出现一次，还有就是一边读入一边处理
+我们用全部的和减去最大值就可以了
+#include <stdio.h>
+
+int main(void) {
+    int n,x,m=1<<31,sum=0,times=0;//INT类型的最小值是1<<31，表示-2147483648，最大值是1<<31+1，表示2147483647，这个记住就行，涉及计算机中数的存储方式
+//或者你可以引入头文件<climits>，用INT_MIN和INT_MAX，理解下这里为什么我要把最大值初始化为INT的最小值
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++) {
+        scanf("%d", &x);
+        sum += x;
+        if (x > m) {
+            m = x;
+            times = 1;
+        }
+        else if (x == m)
+            times++;
+    }
+    printf("%d", sum-m*times);
+}

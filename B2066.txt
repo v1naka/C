@@ -1,0 +1,15 @@
+#include<stdio.h>
+#include<math.h>
+int main(void) {
+    int n, num;//num：人数
+    scanf("%d", &n);
+    double x, y;//坐标
+    double dis,time=0;//距离，时间（要初始化）
+    for (int i = 0; i < n; i++) {
+        scanf("%lf%lf%d", &x,&y,&num);
+        dis = sqrt(x * x + y * y);
+        time += 2*dis / 50 + num * 1.5;//注意来回距离计算两次
+    }
+    printf("%d", (int)(ceil(time)));
+}
+//这里ceil是向上取整函数，floor是向下取整函数，但是得到的结果还是浮点数，比如5.0000，所以还要转化int，这个函数在头文件math.h里面

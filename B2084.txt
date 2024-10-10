@@ -1,0 +1,26 @@
+#include<stdio.h>
+
+int main(void) {
+	int n;
+	scanf("%d", &n);
+	int  p= n/2;
+	while (n%p!=0) {
+		p--;
+	}
+	printf("%d",p);
+	return 0;
+}
+
+#include<stdio.h>
+
+int main(void) {
+	int n;
+	scanf("%d", &n);
+	int  p= 2;
+	while (n%p!=0) {
+		p++;
+	}
+	printf("%d",n/p);
+	return 0;
+}
+对比上面两个代码，分析时间复杂度，其实下面的更快，更好，最多p不会超过根号n

@@ -1,0 +1,34 @@
+//思路1：读入一个数组，再创建一个新的数组，把第一个数组的最后一个元素给第二个数组的第一个元素，第一个数组的倒数第二个元素给第二个数组的第二个元素，依次类推
+//思路2：读入一个数组，依次交换前后对应的两个数
+//思路3：顺序读入一个数组，逆序输出
+#include<stdio.h>
+
+int main(void) {
+	int n;
+	int a[105];
+	scanf("%d", &n);
+	for (int i = 0; i <n; i++) {
+		scanf("%d", &a[i]);
+	}
+	for (int i = n-1; i >=0; i--) {
+		printf("%d ", a[i]);
+	}
+	return 0;
+}
+//思路4：逆序读入一个数组，顺序输出
+#include<stdio.h>
+
+int main(void) {
+	int n;
+	int a[105];
+	scanf("%d", &n);
+	for (int i = n - 1; i >= 0; i--) {
+		scanf("%d", &a[i]);
+	}
+	for (int i = 0; i < n; i++) {
+		printf("%d ", a[i]);
+	}
+	return 0;
+}
+
+//后面两种较优

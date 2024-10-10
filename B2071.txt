@@ -1,0 +1,29 @@
+#include<stdio.h>
+
+int main(void) {
+    int a,b,c;
+    scanf("%d%d%d", &a,&b,&c);
+    int x = 2;//大于1的整数
+    while (a%x!=b%x||a%x!=c%x) {
+        x++;
+    }
+    printf("%d", x);  
+}
+
+下面再提供循环的几种写法：
+
+for(int x=2;;x++){//两个分号中间是循环进行的条件，既然无条件进行，那就空着不写，但注意，必须是两个分号。
+	if(a%x==b%x&&c%x==b%x){
+		printf("%d",x);
+		return 0;//找到了满足条件的x，一定要立即结束程序或跳出循环！
+		//这里也可以写break;
+	}
+}
+
+while(1){//死循环找除数 
+	if(a%x==b%x&&a%x==c%x){		
+		break;
+	}
+	x++; 	
+} 
+printf("%d", x);  

@@ -1,0 +1,17 @@
+#include<stdio.h>
+int main(void){
+    long int x,y,z;
+    scanf("%ld%ld%ld",&x,&y,&z);
+    printf("%8ld %8ld %8ld",x,y,z);
+}
+
+Python
+
+x,y,z=input().split()
+print("{0:>8d} {1:>8d} {2:>8d}".format(int(x),int(y),int(z)))
+
+x,y,z=input().split()
+print("{0:>8} {1:>8} {2:>8}".format(x,y,z))
+
+a,b,c=input().split();
+print(a.rjust(8),b.rjust(8),c.rjust(8));

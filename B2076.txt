@@ -1,0 +1,15 @@
+#include<stdio.h>
+
+int main(void) {
+	int h_;
+	scanf("%d", &h_);
+	double sum = h_;//从第一次碰到地开始计算，可以简化
+	double h = h_;//这里h要用另一个double型变量
+	for (int i = 0; i < 9; i++) {
+		sum += h;//2*h/2
+		h /= 2;//浮点数不能用移位操作！
+	}
+	printf("%lf\n%lf", sum,h/=2);
+    return 0;
+}
+//简单代码优化到极致没有多大意义，思路正确就好，能合并下落和上弹的过程知道这段距离其实就是上一个h更好

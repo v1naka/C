@@ -1,0 +1,56 @@
+思路：初始化索引数组为0，遍历字符串，如果第一次出现，对应数组值为当前索引值，如果第二次、第三次。。。出现，对应数组值设置为-1，最后只需要遍历这个数组，找到数组值大于0且最小的，对应的就是第一个只出现一次的字符
+#include<stdio.h>
+
+int idx[26];//记录字母在字符数组中的索引
+
+int main(void) {
+    char c;
+    for (int i = 1; (c = getchar()) != '\n'; i++) {
+        if (idx[c - 'a'] == 0)//第一次出现
+            idx[c - 'a'] = i;
+        else//不止出现一次
+            idx[c - 'a'] = -1;
+    }
+    int min = 1200;//字符串长度小于1100，我们设置min超出这个数字即可
+    int index = -1;//第一个只出现一次的字符的索引
+    for (int i = 0; i < 26; i++) {
+        if (idx[i] > 0 && idx[i] < min) {
+            min = idx[i];
+            index = i;
+        }//找到最小值，记录下最小值和索引，当然这里也可以直接记录字符，代码我给在下面
+    }
+    if (index == -1)//没找到只出现一次的
+        printf("no");
+    else
+        printf("%c", 'a' + index);
+}
+
+#include<stdio.h>
+
+int idx[26];//记录字母在字符数组中的索引
+
+int main(void) {
+    char c;
+    for (int i = 1; (c = getchar()) != '\n'; i++) {
+        if (idx[c - 'a'] == 0)//第一次出现
+            idx[c - 'a'] = i;
+        else//不止出现一次
+            idx[c - 'a'] = -1;
+    }
+    int min = 1200;//字符串长度小于1100，我们设置min超出这个数字即可
+    char first=0;//第一个只出现一次的字符，这里初始化为a-z之外的任意字符皆可
+    for (int i = 0; i < 26; i++) {
+        if (idx[i] > 0 && idx[i] < min) {
+            min = idx[i];
+            first='a'+i;
+        }//找到最小值，记录下最小值和索字符
+    }
+    if (first == 0)//没找到只出现一次的
+        printf("no");
+    else
+        printf("%c", first);
+}
+
+这题的题解里面有很多错误的答案，都是直接用桶计数法统计了每个字符出现的次数，然后找到出现一次的输出，这样不能保证输出的字符是第一次出现的
+
+题解里面还有很多使用STL库中的东西，比如map，vector，tree，queue等等，这个是数据结构与算法的内容，等你把C语言基础掌握了之后再用那些比较方便的东西，现在先不要用

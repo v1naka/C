@@ -1,0 +1,20 @@
+又是桶计数法就能很快解决的
+#include <stdio.h>
+#include <stdbool.h>
+
+bool a[105];//这题我们只需要判断某个数是不是出现过了，所以使用bool型数组，bool类型比int类型占空间更少(只存储0和1)
+
+int main()
+{
+    int n,x;
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++)
+    {
+        scanf("%d", &x);
+        if (a[x] == false) {
+            a[x] = true;
+            printf("%d ", x);
+        }
+    }
+    return 0;
+}

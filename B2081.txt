@@ -1,0 +1,14 @@
+常规遍历，一个个判断
+#include<stdio.h>
+
+int main(void) {
+	int n;
+	scanf("%d", &n);
+	int sum = 0;
+	for (int i = 1; i <= n; i++) {
+		if (!(i % 7 == 0 || i % 10 == 7 || i / 10 == 7))//!表示取逻辑取反，比如!0=1，!1=0，这里要注意，逻辑里只有0和非0(1)，如果!3，结果还是0，因为3是非0，取反就是0
+			sum += i * i;
+	}
+	printf("%d", sum);
+	return 0;
+}

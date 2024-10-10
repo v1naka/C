@@ -1,0 +1,23 @@
+这题只需要开一个数组即可
+#include <stdio.h>
+#include <stdbool.h>
+
+bool a[105][105];//像素点只有0和1两个值，使用bool类型可以减少内存消耗
+
+int main(void) {
+    int m, n;
+    scanf("%d%d", &m, &n);
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++)
+            scanf("%d", &a[i][j]);
+
+    int cnt = 0, x;
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &x);
+            if (x == a[i][j])
+                cnt++;
+        }
+    printf("%.2lf", 100.0*cnt/(m*n));
+    return 0;
+}

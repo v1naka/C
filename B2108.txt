@@ -1,0 +1,67 @@
+这题唯一的注意点就是取平均值时舍入到最近的整数，而不是向下取整，这里可以用%.0f
+或者round(x)，round在函数库<math.h>中，返回x四舍五入到整数位的结果，但仍然是浮点数，所以要转化成整数(int)round(x)，或者int b=round(x)
+或者(int)(x+0.5)，这也是四舍五入，自己想一下原理
+
+下面给两种思路
+
+思路1：判断是否是边界，如果是就输出数组元素，否则计算
+#include <stdio.h>
+
+int a[105][105];
+
+int main(void) {
+    int n,m;
+    scanf("%d%d", &n, &m);
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            scanf("%d", &a[i][j]);
+
+    for (int i = 0; i < n ; i++) {
+        for (int j = 0; j < m ; j++) {
+            if (i == 0 || i == n - 1 || j == 0 || j == m - 1)
+                printf("%d ", a[i][j]);
+            else
+                printf("%.0f ", (a[i - 1][j] + a[i][j] + a[i + 1][j] + a[i][j - 1] + a[i][j + 1]) / 5.0);
+        }
+        putchar(10);
+    }
+    return 0;
+}
+
+思路2：引入额外存储空间数组b，先将边界赋值进去，然后直接计算中间元素，无需判断边界
+
+#include <stdio.h>
+
+int a[105][105];
+float b[105][105];
+
+int main(void) {
+    int n,m;
+    scanf("%d%d", &n, &m);
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            scanf("%d", &a[i][j]);
+
+    for (int j = 0; j < m; j++) {
+        b[0][j] = a[0][j];
+        b[n - 1][j] = a[n - 1][j];
+    }
+    for (int i = 0; i < n; i++) {
+        b[i][0] = a[i][0];
+        b[i][m - 1] = a[i][m - 1];
+    }
+
+    for (int i = 1; i < n-1; i++) 
+        for (int j = 1; j < m-1; j++)
+            b[i][j] = (a[i - 1][j] + a[i][j] + a[i + 1][j] + a[i][j - 1] + a[i][j + 1]) / 5.0;
+
+    for (int i = 0; i < n ; i++) {
+        for (int j = 0; j < m ; j++) {
+            printf("%.0f ", b[i][j]);
+        }
+        putchar(10);
+    }
+    return 0;
+}
+
+这段代码的运行速度更快，因为它减少了思路一代码4mn(近似)次的判断，但同时使用了更多空间，属于典型的空间换时间

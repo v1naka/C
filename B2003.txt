@@ -1,0 +1,11 @@
+#include <stdio.h>
+int main(void){
+    int x,y,z;
+    scanf("%d%d%d",&y,&x,&z);
+    printf("%d",x);
+}
+
+Python
+
+_,b,_=input().split()
+print(b)

@@ -1,0 +1,66 @@
+//思路1：直接使用printf输出，不说了，题解里面有代码
+
+//思路2：准备好实心行和空心行的字符串，按情况输出即可，代码风格学一下
+//虽然执行时间不会优化(甚至更慢，但仍然是线性的，不用太管)，但是可读性更强
+#include<stdio.h>
+
+int main(void) {
+	int a, b;
+	char c;
+	int f;
+	scanf("%d%d %c%d", &a, &b, &c, &f);//这里中间的空格要注意
+
+	//实心一行
+	char str_solid[105];
+	for (int i = 0; i < b; i++)
+		str_solid[i] = c;
+	str_solid[b] = '\0';//字符数组转换为字符串，这样方便输出
+
+	//空心一行
+	char str_hollow[105];
+	str_hollow[0] = c;
+	for (int i = 1; i < b; i++)
+		str_hollow[i] = ' ';
+	str_hollow[b - 1] = c;
+	str_hollow[b] = '\0';
+
+	if (f == 0) {
+		puts(str_solid);
+		for (int i = 1; i < a-1; i++)
+			puts(str_hollow);
+		puts(str_solid);
+	}
+	else {
+		for (int i = 0; i < a; i++)
+			puts(str_solid);
+	}
+	return 0;
+}
+
+//思路3：二维数组当作画布
+//想一下为什么这题感觉有点复杂，因为输出的时候不能选择位置，必须按顺序一个个输出，从上到下，从左到右，这就类似我们之后要学的链表，很烦，这种叫顺序
+//这时候就想到数组，数组是可以随机访问的(下标访问)，所以我们用一个二维数组当画布，先把要输出的图形画好，再输出就很简单了
+//和上面一样，我们使用了额外的存储空间和时间，但是代码可读性又一步增强了，并且，这段代码写起来非常快
+#include<stdio.h>
+
+int main(void) {
+	int a, b;
+	char c;
+	int f;
+	scanf("%d%d %c%d", &a, &b, &c, &f);
+	char pic[105][105];//我们准备一张大的画布
+	for (int i = 0; i < a; i++)
+		for (int j = 0; j < b; j++)
+			pic[i][j] = c;//先把需要的区域填满
+	if(f==0)
+		for (int i = 1; i < a-1; i++)
+			for (int j = 1; j < b-1; j++)
+				pic[i][j] = ' ';//空心的话就把中间扣掉
+	for (int i = 0; i < a; i++) {
+		for (int j = 0; j < b; j++)
+			putchar(pic[i][j]);
+		putchar(10);
+	}
+	return 0;
+}
+//三个for循环，复制粘贴稍微改点就行了，写的真的飞速，并且这个做法可推广性最强，好好体会一下

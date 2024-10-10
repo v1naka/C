@@ -1,0 +1,21 @@
+#include<stdio.h>
+
+int main(void) {
+	long int n;//注意数的范围，n*3之后可能会超出int的范围
+	long int a;
+	scanf("%ld", &n);
+	while (n != 1) {//这种没有具体要做多少步的就用while来写
+		if (n & 1 == 1) {
+		    a=3 * n + 1;
+		    printf("%ld*3+1=%ld\n", n, a);//注意这个输出的写法，理解为什么%叫做占位符
+		    n = a;
+		}
+		else {
+		    a=n >> 1;
+		    printf("%ld/2=%ld\n", n,a) ;
+		    n =a;
+		}
+	}
+	printf("End");
+    return 0;
+}

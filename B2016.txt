@@ -1,0 +1,24 @@
+向0舍入其实就是取整数部分，所以直接读入整数部分
+#include<stdio.h>
+
+int main(void) {
+    long long int x;
+    scanf("%lld", &x);
+    printf("%lld",x);
+}
+
+强制类型转换也同理
+#include<stdio.h>
+
+int main(void) {
+    double x;
+    scanf("%lf", &x);
+    printf("%lld",(long long int)x);
+}
+
+Python
+
+Python 并不能向其他语言一样直接按照整数读取，否则会报错，因此需要用浮点数先预读一次，然后强制转换为整数即可
+x=float(input())
+x=int(x)
+print(x)

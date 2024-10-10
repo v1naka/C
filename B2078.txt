@@ -1,0 +1,54 @@
+#include<stdio.h>
+
+int main(void) {
+	long int n;
+	int k, cnt = 0;//cnt表示count，计数，习惯这么写
+	scanf("%ld%d", &n, &k);
+	while (n) {
+		if (n % 10 == 3) cnt++;
+		n /= 10;
+	}
+	if (cnt == k)
+		printf("YES");
+	else
+		printf("NO");
+	return 0;
+}//这种做法没什么好说的
+
+进阶思路：将输入的数字以字符串的形式读入，这样就不用一位一位计算了，很多有关整数各个位上的数的性质都可以这么做，不用/10%10很简单
+实现：①一个一个字符读入，一个一个判断②直接当作一整个字符串读入
+#include<stdio.h>
+
+int main(void) {
+	char c;
+	int k, cnt = 0;//cnt表示count，计数，习惯这么写
+	while ((c=getchar()) != ' ') {//当获得的字符不是空格的时候
+		//这里要注意，运算符是有优先级的，赋值运算符=的优先级是低于判断运算符！=的，所以前面要加括号
+		//否则就会变成c和True or False比较
+		if (c == '3') cnt++;
+	}
+	scanf("%d", &k);
+	if (cnt == k)
+		printf("YES");
+	else
+		printf("NO");
+	return 0;
+}
+
+
+#include<stdio.h>
+
+int main(void) {
+	char str[20];
+	int k,cnt=0;//cnt表示count，计数，习惯这么写
+	scanf("%s%d", str,&k);
+	for (int i = 0; str[i] != '\0'; i++) {
+		if (str[i] == '3')
+			cnt++;
+	}
+	if (cnt == k)
+		printf("YES");
+	else
+		printf("NO");
+    return 0;
+}

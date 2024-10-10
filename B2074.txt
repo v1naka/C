@@ -1,0 +1,61 @@
+switch case语句就不多说了，没啥技巧
+
+如果直接计算再模7(即%7)，数字太大，无法处理，参考B2073题的处理方法，我们一边计算，一边舍去高位的数，只使用余数进行计算
+原理：(7*n+a) * (7*n+b) = 7*n' + a*b 这个数对7取模其实就是a*b对7取模
+
+#include<stdio.h>
+
+int main(void) {
+	int a,b;
+	scanf("%d%d", &a,&b);
+	a %= 7;
+	int ans = 1;
+	for (int i = 1; i <= b; i++) {
+		ans *= a;//这一步是余数相乘
+		ans %= 7;//这一步是进行模7取余数，使得数字变小
+	}
+	switch (ans) {
+	case 1:printf("Monday"); break;
+	case 2:printf("Tuesday"); break;
+	case 3:printf("Wednesday"); break;
+	case 4:printf("Thursday"); break;
+	case 5:printf("Friday"); break;
+	case 6:printf("Saturday"); break;
+	case 0:printf("Sunday"); break;
+	}
+    return 0;
+}
+
+上面是题解代码，但是这种方法不是最简单的。可以自己试一下，随便取a，然后计算a^1,a^2,a^3...对7取模，可以发现一个周期规律
+其实发现到这里就可以简化代码了，我一开始先开始计算前面几项，储存在一个小数组里面，计算到两个相同的余数的时候就可以停止了(为什么能确定一定是周期，想一下)
+这个时候我们就找到了一个周期，然后对b取模就可以了——不同数的周期长度不同，可以试一试
+
+这里其实涉及到了数论中的费马小定理，它反映的就是这种模的周期关系
+
+费马小定理：对于一个整数a，一个质数p，有a^p≡a(mod 7)，不要看符号很复杂，其实就是a^p和a模7(%7)的结果是相同的
+对于这道题，p=7，就有a^7≡a(mod 7)，就是说a乘了a^6之后模7相同，所以我们找到了一个周期6(①为什么是6不是7②这个6并不一定是最小周期)
+于是我们就可以固定计算前6项(不用去管更短的，判断什么乱七八糟的一是想起来比较烦，二是反而代码复杂度更高，运行更慢，常数次的运算我们就没有必要多想了)，然后对b模6即可
+
+下面是我写的代码，就是刚拿到这个题的时候写的，因为我有费马小定理的储备，自己写一遍，分析一下三种方法的时间复杂度
+
+#include<stdio.h>
+
+int main(void) {
+	int a,b;
+	scanf_s("%d%d", &a,&b);
+	a %= 7;
+	int c[6] = { a };//余数数组，第一个数是a%7
+	for (int i = 1; i < 6; i++) {
+		c[i] =c[i-1]*c[0]%7;
+	}
+	switch (c[(b-1)%6]) {
+	case 1:printf("Monday"); break;
+	case 2:printf("Tuesday"); break;
+	case 3:printf("Wednesday"); break;
+	case 4:printf("Thursday"); break;
+	case 5:printf("Friday"); break;
+	case 6:printf("Saturday"); break;
+	case 7:printf("Sunday"); break;
+	}
+    return 0;
+}

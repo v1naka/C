@@ -1,0 +1,20 @@
+#include<stdio.h>
+
+int main(void){
+    int a,b;
+    scanf("%d%d",&a,&b);
+    printf("%.3lf%%",100.0*b/a);
+}
+
+Python
+
+a=input()
+b=input()
+a=float(a)
+b=float(b)
+print("{:.3f}%".format(100*b/a))
+
+
+a=float(input())
+b=float(input())
+print("{:.3%}".format(b/a))

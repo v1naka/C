@@ -1,0 +1,29 @@
+//第一种方法，不使用额外数组，读入单个字符判断
+#include<stdio.h>
+
+int main(void) {
+    char c;
+    int cnt = 0;
+    while (scanf("%c", &c) != EOF) {
+        if ('0' <= c && c <= '9')
+            cnt++;
+    }
+    printf("%d", cnt);
+}
+//这里括号里面的判断条件还可以写(c=getchar())!='\n'
+
+//第二种方法，使用字符串数组读入
+#include<stdio.h>
+
+char s[260];
+
+int main(void) {
+
+    int cnt = 0;
+    gets(s);//这里不能使用scanf("%s",s); 因为字符串里有空格
+    for (int i = 0; s[i] != '\0'; i++) {//字符串末尾是'\0'结束符号
+        if ('0' <= s[i] && s[i] <= '9')
+            cnt++;
+    }
+    printf("%d", cnt);
+}

@@ -1,0 +1,44 @@
+#include<stdio.h>
+
+char dna1[505],dna2[505];
+
+int main(void) {
+    double x;
+    scanf("%lf", &x);
+    scanf("%s %s", dna1, dna2);
+    int cnt = 0,i;
+    for (i = 0; dna1[i] != '\0'; i++) {
+        if (dna1[i] == dna2[i])
+            cnt++;
+    }
+//注意这里，我在for循环外面定义了i，这样在循环停止时，i的值就是字符串的长度，并且我可以直接使用
+//但如果你在for循环里面定义i，在循环停止时，i的值也是字符串的长度，但不可以直接使用，因为定义在循环里的i是一个局部变量，不能为外界所用
+    if (1.0 * cnt / i >= x)
+        printf("yes");
+    else
+        printf("no");
+}
+
+那如果不使用scanf，使用gets该怎么写？ 自己试一下再看下面代码
+
+#include<stdio.h>
+
+char dna1[505],dna2[505];
+
+int main(void) {
+    double x;
+    scanf("%lf", &x);
+    getchar();//这个一定要有，思考下缓冲区问题
+    //或者将scanf("%lf", &x);改成scanf("%lf ", &x);加了个空格，就不用getchar()了
+    gets(dna1); 
+    gets(dna2);
+    int cnt = 0,i;
+    for (i = 0; dna1[i] != '\0'; i++) {
+        if (dna1[i] == dna2[i])
+            cnt++;
+    }
+    if (1.0 * cnt / i >= x)
+        printf("yes");
+    else
+        printf("no");
+}

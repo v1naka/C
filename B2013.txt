@@ -1,0 +1,13 @@
+#include<stdio.h>
+
+int main(void){
+    double F;//实数F
+    scanf("%lf",&F);
+    printf("%.5lf",5.0*(F-32)/9);
+    return 0;
+}
+
+Python
+
+F=float(input())
+print("{:.5f}".format(5*(F-32)/9))
